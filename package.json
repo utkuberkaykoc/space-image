@@ -1,0 +1,14 @@
+{
+    "name": "spaceimage-api",
+    "version": "1.0.0",
+    "description": "Client for Space Image API",
+    "main": "spaceImage.js",
+    "scripts": {
+      "start": "node spaceImage.js"
+    },
+    "author": "Utku Berkay Koç",
+    "license": "MIT",
+    "dependencies": {
+      "axios": "^0.21.1"
+    }
+  }
