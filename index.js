@@ -1,24 +1,29 @@
 const axios = require('axios');
 
-// API URL
 const apiUrl = 'https://utku.berkaykoc.net/api/entertainment/space-image';
 
-// Uzay görüntüsü bilgisi alma fonksiyonu
-async function getSpaceImage(day, month) {
+/**
+ * Fetches a space image from NASA based on the given day and month.
+ * @param {number} day - The day of the month (1-31).
+ * @param {string} month - The name of the month in Turkish or English.
+ * @param {string} [lang="en"] - The language of the response ("tr" or "en").
+ * @returns {Promise<object>} - Returns a JSON object with date and image URL.
+ */
+async function getSpaceImage(day, month, lang = "en") {
   try {
     const response = await axios.get(apiUrl, {
-      params: { day, month }
+      params: { day, month, lang }
     });
-    console.log('Uzay Görüntüsü Bilgisi:', response.data);
+    return response.data;
   } catch (error) {
-    console.error('Uzay görüntüsü bilgisi alınamadı:', error.response ? error.response.data : error.message);
+    throw new Error(error.response ? JSON.stringify(error.response.data) : error.message);
   }
 }
 
-// Örnek kullanımlar
-getSpaceImage(15, 'ocak');
-getSpaceImage(20, 'şubat');
-getSpaceImage(5, 'mart');
+module.exports = {
+  getSpaceImage
+};
+
 
 /*
         _   _            _               _               _                           _   

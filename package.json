@@ -1,14 +1,29 @@
 {
-    "name": "spaceimage-api",
-    "version": "1.0.0",
-    "description": "Client for Space Image API",
-    "main": "spaceImage.js",
-    "scripts": {
-      "start": "node spaceImage.js"
-    },
-    "author": "Utku Berkay Koç",
-    "license": "MIT",
-    "dependencies": {
-      "axios": "^0.21.1"
-    }
+  "name": "space-image",
+  "version": "1.0.0",
+  "description": "A Node.js wrapper for fetching space images from NASA based on your birthday or a specific date. Supports Turkish and English.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/utkuberkaykoc/space-image.git"
+  },
+  "keywords": [
+    "nasa",
+    "space",
+    "image",
+    "api",
+    "birthday",
+    "hubble",
+    "astronomy",
+    "science",
+    "nodejs"
+  ],
+  "author": "Utku Berkay Koç",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.4.0"
   }
+}
