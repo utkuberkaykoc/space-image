@@ -7,7 +7,7 @@ const apiUrl = 'https://utku.berkaykoc.net/api/entertainment/space-image';
  * @param {number} day - The day of the month (1-31).
  * @param {string} month - The name of the month in Turkish or English.
  * @param {string} [lang="en"] - The language of the response ("tr" or "en").
- * @returns {Promise<object>} - Returns a JSON object with date and image URL.
+ * @returns {Promise<object>} - Returns a JSON object with date and base64-encoded image.
  */
 async function getSpaceImage(day, month, lang = "en") {
   try {

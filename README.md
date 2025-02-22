@@ -1,6 +1,6 @@
 # Space Image API 🚀  
 
-Fetches a space image from NASA based on a given day and month. Supports both Turkish and English month names.  
+Fetches a space image from NASA based on a given day and month. Supports both Turkish and English month names. Returns the image in Base64 format.  
 
 ![NPM Version](https://img.shields.io/npm/v/space-image?color=blue&style=flat-square)  
 ![Downloads](https://img.shields.io/npm/dt/space-image?color=green&style=flat-square)  
@@ -12,6 +12,7 @@ Fetches a space image from NASA based on a given day and month. Supports both Tu
 
 ✅ Fetch **NASA space images** based on **your birthday** or a **specific date** 📆  
 ✅ **Supports Turkish & English** month names 🌍  
+✅ **Returns Base64-encoded images** instead of URLs 🖼️  
 ✅ **No API key required** 🔑  
 ✅ **Works with Node.js & supports Promises** ⚡  
 
@@ -40,7 +41,7 @@ const { getSpaceImage } = require("space-image");
 
 ### Fetch a space image by date  
 ```js
-getSpaceImage(15, "ocak", "tr")
+getSpaceImage(15, "january", "en")
   .then(data => console.log(data))
   .catch(err => console.error(err));
 ```
@@ -48,9 +49,31 @@ getSpaceImage(15, "ocak", "tr")
 ### Example Response  
 ```json
 {
-  "date": "15 Ocak",
-  "imageUrl": "https://imagine.gsfc.nasa.gov/hst_bday/images/january-15.jpg"
+  "date": "15 January",
+  "base64Image": "/9j/4AAQSkZJRgABAQAAAQABAAD..."
 }
+```
+
+---
+
+## 📥 Saving the Image to a File  
+You can save the Base64-encoded image to a `.jpg` file using Node.js `fs` module:  
+```js
+const { getSpaceImage } = require("space-image");
+const fs = require("fs");
+
+async function downloadImage(day, month, lang = "en") {
+  try {
+    const data = await getSpaceImage(day, month, lang);
+    fs.writeFileSync(`space_image_${day}_${month}.jpg`, Buffer.from(data.base64Image, "base64"));
+    console.log(`✅ Image saved as space_image_${day}_${month}.jpg`);
+  } catch (error) {
+    console.error("❌ Failed to download image:", error.message);
+  }
+}
+
+// Example usage
+downloadImage(15, "january", "en");
 ```
 
 ---
@@ -62,9 +85,9 @@ Fetches a space image from NASA based on the given day and month.
 
 - **Parameters:**  
   - `day` _(number)_ → The day of the month (1-31).  
-  - `month` _(string)_ → The name of the month in **Turkish or English** (e.g., `"ocak"` or `"january"`).  
-  - `lang` _(string, optional)_ → The response language (`"tr"` or `"en"`). Defaults to `"en"`.  
-- **Returns:** `Promise<object>` → JSON object with date and image URL.  
+  - `month` _(string)_ → The name of the month in **Turkish or English** (e.g., "ocak" or "january").  
+  - `lang` _(string, optional)_ → The response language ("tr" or "en"). Defaults to "en".  
+- **Returns:** `Promise<object>` → JSON object with date and Base64-encoded image.  
 
 ---
 
@@ -86,3 +109,4 @@ This project is licensed under the **MIT License**.
 - **Give a Star:** ⭐ If you like this package, consider giving it a star on GitHub!  
 
 🚀 **Happy Coding!** 🎮✨  
+
