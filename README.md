@@ -12,7 +12,7 @@ Fetches a space image from NASA based on a given day and month. Supports both Tu
 
 ✅ Fetch **NASA space images** based on **your birthday** or a **specific date** 📆  
 ✅ **Supports Turkish & English** month names 🌍  
-✅ **Returns Base64-encoded images** instead of URLs 🖼️  
+✅ Returns **Base64-encoded images** 🖼️  
 ✅ **No API key required** 🔑  
 ✅ **Works with Node.js & supports Promises** ⚡  
 
