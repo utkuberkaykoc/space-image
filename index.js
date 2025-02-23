@@ -1,4 +1,4 @@
-const axios = require('axios');
+const fetch = require('node-fetch');
 
 const apiUrl = 'https://utku.berkaykoc.net/api/entertainment/space-image';
 
@@ -11,12 +11,14 @@ const apiUrl = 'https://utku.berkaykoc.net/api/entertainment/space-image';
  */
 async function getSpaceImage(day, month, lang = "en") {
   try {
-    const response = await axios.get(apiUrl, {
-      params: { day, month, lang }
-    });
-    return response.data;
+    const response = await fetch(`${apiUrl}?day=${day}&month=${month}&lang=${lang}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
   } catch (error) {
-    throw new Error(error.response ? JSON.stringify(error.response.data) : error.message);
+    throw new Error(error.message);
   }
 }
 

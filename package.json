@@ -1,6 +1,6 @@
 {
   "name": "space-image",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A Node.js wrapper for fetching space images from NASA based on your birthday or a specific date. Supports Turkish and English.",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,6 @@
   "author": "Utku Berkay Koç",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.4.0"
+    "node-fetch": "^2.6.7"
   }
 }
