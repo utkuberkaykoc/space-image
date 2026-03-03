@@ -1,6 +1,7 @@
 # Space Image API 🚀  
 
-Fetches a space image from NASA based on a given day and month. Supports both Turkish and English month names. Returns the image in Base64 format.  
+✅ **Free to use!**
+🔭 Fetches a **space image** from NASA based on a given day and month. Supports both **Turkish and English** month names. Returns the image in Base64 format.  
 
 ![NPM Version](https://img.shields.io/npm/v/space-image?color=blue&style=flat-square)  
 ![Downloads](https://img.shields.io/npm/dt/space-image?color=green&style=flat-square)  
@@ -50,6 +51,7 @@ getSpaceImage(15, "january", "en")
 ```json
 {
   "date": "15 January",
+  "description": "The magnificent galaxy NGC 4710 is tilted nearly edge-on to our view from Earth...",
   "base64Image": "/9j/4AAQSkZJRgABAQAAAQABAAD..."
 }
 ```
@@ -87,7 +89,7 @@ Fetches a space image from NASA based on the given day and month.
   - `day` _(number)_ → The day of the month (1-31).  
   - `month` _(string)_ → The name of the month in **Turkish or English** (e.g., "ocak" or "january").  
   - `lang` _(string, optional)_ → The response language ("tr" or "en"). Defaults to "en".  
-- **Returns:** `Promise<object>` → JSON object with date and Base64-encoded image.  
+- **Returns:** `Promise<object>` → JSON object with date, description and Base64-encoded image.  
 
 ---
 
