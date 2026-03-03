@@ -1,7 +1,7 @@
 {
   "name": "space-image",
-  "version": "1.6.0",
-  "description": "A Node.js wrapper for fetching space images from NASA based on your birthday or a specific date. Supports Turkish and English.",
+  "version": "2.0.0",
+  "description": "Fetch NASA space images by date, birthday, or randomly. Includes today's image, save-to-file helpers, and multi-language support.",
   "main": "index.js",
   "scripts": {
     "test": "node index.js"

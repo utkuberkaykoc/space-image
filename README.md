@@ -1,7 +1,7 @@
 # Space Image API 🚀  
 
-✅ **Free to use!**
-🔭 Fetches a **space image** from NASA based on a given day and month. Supports both **Turkish and English** month names. Returns the image in Base64 format.  
+✅ **Free to use!**  
+🔭 Fetch stunning **NASA space images** by date, birthday, or randomly! Includes **save-to-file** helpers and **multi-language** support.
 
 ![NPM Version](https://img.shields.io/npm/v/space-image?color=blue&style=flat-square)  
 ![Downloads](https://img.shields.io/npm/dt/space-image?color=green&style=flat-square)  
@@ -9,106 +9,97 @@
 
 ---
 
-## 📌 Features  
+## 🆕 What's New in v2.0.0  
 
-✅ Fetch **NASA space images** based on **your birthday** or a **specific date** 📆  
-✅ **Supports Turkish & English** month names 🌍  
-✅ Returns **Base64-encoded images** 🖼️  
-✅ **No API key required** 🔑  
-✅ **Works with Node.js & supports Promises** ⚡  
+🔥 **Today's Image** – Get today's space image with one call  
+🔥 **Random Image** – Discover a random NASA space image  
+🔥 **Birthday Image** – See what NASA captured on your birthday (by month number)  
+🔥 **Save to File** – Built-in `saveImageToFile()` and `fetchAndSave()` helpers  
+🔥 **Input Validation** – Better error messages  
+🔥 **Auto Directory Creation** – Saves create missing folders automatically  
 
 ---
 
 ## 📦 Installation  
 
-Install via **npm**:  
 ```sh
 npm install space-image
 ```
 
-Or using **yarn**:  
-```sh
-yarn add space-image
-```
-
 ---
 
-## 🚀 Usage  
+## 🚀 Quick Start  
 
-### Import the package  
 ```js
-const { getSpaceImage } = require("space-image");
+const { getTodayImage, getRandomImage, getBirthdayImage, fetchAndSave } = require("space-image");
+
+// 🌟 Today's space image
+const today = await getTodayImage();
+console.log(today.description);
+
+// 🎲 Random space image
+const random = await getRandomImage();
+console.log(random.date);
+
+// 🎂 Your birthday space image (day 15, month 6 = June)
+const birthday = await getBirthdayImage(15, 6);
+console.log(birthday.description);
+
+// 💾 Fetch and save in one call
+const { savedPath } = await fetchAndSave(25, "december", "xmas_space.jpg");
+console.log(`Saved to: ${savedPath}`);
 ```
 
-### Fetch a space image by date  
+---
+
+## 📌 API Methods  
+
+| Method | Description |
+|---|---|
+| `getSpaceImage(day, month, lang?)` | Fetch by day and month name |
+| `getTodayImage(lang?)` | Get today's space image |
+| `getRandomImage(lang?)` | Get a random space image |
+| `getBirthdayImage(day, month, lang?)` | Get image by birthday (month as number 1-12) |
+| `saveImageToFile(imageData, path?, format?)` | Save Base64 image to file |
+| `fetchAndSave(day, month, path?, lang?)` | Fetch + save in one call |
+
+---
+
+## 💾 Saving Images  
+
 ```js
-getSpaceImage(15, "january", "en")
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
-```
+const { getSpaceImage, saveImageToFile } = require("space-image");
 
-### Example Response  
-```json
-{
-  "date": "15 January",
-  "description": "The magnificent galaxy NGC 4710 is tilted nearly edge-on to our view from Earth...",
-  "base64Image": "/9j/4AAQSkZJRgABAQAAAQABAAD..."
-}
+const data = await getSpaceImage(15, "january", "en");
+
+// Auto-named file
+const path1 = await saveImageToFile(data);
+console.log(`Saved: ${path1}`); // "15_January.jpg"
+
+// Custom path
+const path2 = await saveImageToFile(data, "images/space.png", "png");
+console.log(`Saved: ${path2}`);
 ```
 
 ---
 
-## 📥 Saving the Image to a File  
-You can save the Base64-encoded image to a `.jpg` file using Node.js `fs` module:  
+## 🌍 Language Support  
+
+Supports `"en"` (English) and `"tr"` (Turkish):
 ```js
-const { getSpaceImage } = require("space-image");
-const fs = require("fs");
-
-async function downloadImage(day, month, lang = "en") {
-  try {
-    const data = await getSpaceImage(day, month, lang);
-    fs.writeFileSync(`space_image_${day}_${month}.jpg`, Buffer.from(data.base64Image, "base64"));
-    console.log(`✅ Image saved as space_image_${day}_${month}.jpg`);
-  } catch (error) {
-    console.error("❌ Failed to download image:", error.message);
-  }
-}
-
-// Example usage
-downloadImage(15, "january", "en");
+const trImage = await getTodayImage("tr");
 ```
-
----
-
-## 📜 API Reference  
-
-### `getSpaceImage(day, month, lang)`  
-Fetches a space image from NASA based on the given day and month.  
-
-- **Parameters:**  
-  - `day` _(number)_ → The day of the month (1-31).  
-  - `month` _(string)_ → The name of the month in **Turkish or English** (e.g., "ocak" or "january").  
-  - `lang` _(string, optional)_ → The response language ("tr" or "en"). Defaults to "en".  
-- **Returns:** `Promise<object>` → JSON object with date, description and Base64-encoded image.  
-
----
-
-## 🛠️ Contributing  
-
-Contributions are welcome! Fork the repository, create a branch, make changes, and submit a PR. 🚀  
 
 ---
 
 ## 📜 License  
-
 This project is licensed under the **MIT License**.  
 
 ---
 
 ## 🌟 Support & Contact  
-
 - **GitHub Issues:** [Report Bugs or Request Features](https://github.com/utkuberkaykoc/space-image/issues)  
 - **Give a Star:** ⭐ If you like this package, consider giving it a star on GitHub!  
 
-🚀 **Happy Coding!** 🎮✨  
+🚀 **Explore the Universe!** 🌌✨  
 
